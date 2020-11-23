@@ -4,7 +4,7 @@ import PySimpleGUI as sg
 sg.theme('Dark Amber')
 
 lay=[
-    [sg.InputText(text_color='black' ,key='-dir-',background_color='white'),sg.FileBrowse( file_types=(('ALL Files', '*.doc'),))],
+    [sg.InputText(text_color='black' ,key='-dir-',background_color='white'),sg.FileBrowse( file_types=(('ALL Files', '*.doc'),('ALL Files', '*.docx')))],
     [sg.Button('Converter'),sg.Button('Cancelar')]]
 
 try:
@@ -21,8 +21,8 @@ def doc2pdf_linux(doc):
     p = subprocess.Popen(cmd, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
     p.wait(timeout=10)
     stdout, stderr = p.communicate()
-    if stderr:
-        raise subprocess.SubprocessError(stderr)
+    # if stderr:
+    #     raise subprocess.SubprocessError(stderr)
 
 window=sg.Window('Convert',lay)
 
